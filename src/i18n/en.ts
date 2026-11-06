@@ -327,10 +327,10 @@ export const en: Dict = {
     invalidEmail: 'Invalid email address.',
     googleTitle: 'Google Form',
     googleNote: 'Fill in the form below; your answers are saved in Google Forms.',
-    googleOpen: 'Open the form in a new tab',
+    googleOpen: 'Open the form',
     whatsappTitle: 'Contact on WhatsApp',
     whatsappNote: 'Chat directly with Mirado on WhatsApp.',
-    whatsappCta: 'Open WhatsApp',
+    whatsappCta: 'WhatsApp',
     whatsappPrefill: 'Hello Mirado, I’m reaching out via your portfolio.',
   },
   footer: {

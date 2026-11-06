@@ -330,10 +330,10 @@ export const fr = {
     invalidEmail: 'Adresse e-mail invalide.',
     googleTitle: 'Formulaire Google',
     googleNote: 'Remplissez le formulaire ci-dessous ; vos réponses sont enregistrées dans Google Forms.',
-    googleOpen: 'Ouvrir le formulaire dans un nouvel onglet',
+    googleOpen: 'Ouvrir le formulaire',
     whatsappTitle: 'Contacter sur WhatsApp',
     whatsappNote: 'Discutez directement avec Mirado sur WhatsApp.',
-    whatsappCta: 'Ouvrir WhatsApp',
+    whatsappCta: 'WhatsApp',
     whatsappPrefill: 'Bonjour Mirado, je vous contacte via votre portfolio.',
   },
   footer: {

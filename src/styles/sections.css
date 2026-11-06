@@ -1902,3 +1902,50 @@
     height: 20rem;
   }
 }
+
+.contact__panel {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  border: 1px solid var(--ink);
+  background: var(--surface);
+  box-shadow: 10px 10px 0 -1px var(--ink);
+  border-radius: var(--radius);
+  align-content: start;
+}
+.contact__cta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+  align-items: stretch;
+}
+.contact__cta {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 3.15rem;
+  height: 100%;
+  padding: 0.75rem 1rem !important;
+  line-height: 1.25;
+  box-sizing: border-box;
+  text-align: center;
+}
+.contact__cta span {
+  min-width: 0;
+}
+.contact__wa {
+  border-color: #25d36688 !important;
+}
+.contact__wa:hover {
+  border-color: #25d366 !important;
+  color: #1faa52 !important;
+  background: color-mix(in srgb, #25d366 12%, transparent) !important;
+}
+@media (max-width: 40rem) {
+  .contact__cta-row {
+    grid-template-columns: 1fr;
+  }
+}

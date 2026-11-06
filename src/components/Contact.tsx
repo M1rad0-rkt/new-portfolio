@@ -78,36 +78,36 @@ export function Contact() {
             </div>
           </Reveal>
 
-          <Reveal className="contact__form" delay={100}>
+          <Reveal className="contact__panel" delay={100}>
             <h3 className="contact__form-title">{c.googleTitle}</h3>
             <p className="contact__note">{c.googleNote}</p>
 
             <div className="contact__cta-row">
               {hasGoogle ? (
                 <a
-                  className="btn btn--solid"
+                  className="btn btn--solid contact__cta"
                   href={profile.googleFormUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {c.googleOpen}
+                  <span>{c.googleOpen}</span>
                   <IconExternal size={16} />
                 </a>
               ) : (
-                <a className="btn btn--solid" href={`mailto:${profile.email}`}>
+                <a className="btn btn--solid contact__cta" href={`mailto:${profile.email}`}>
                   <IconMail size={18} />
-                  {profile.email}
+                  <span>{profile.email}</span>
                 </a>
               )}
 
               {hasWhatsapp ? (
                 <a
-                  className="btn btn--line contact__wa"
+                  className="btn btn--line contact__cta contact__wa"
                   href={whatsappHref(c.whatsappPrefill)}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {c.whatsappCta}
+                  <span>{c.whatsappCta}</span>
                   <IconExternal size={16} />
                 </a>
               ) : null}
