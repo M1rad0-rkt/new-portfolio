@@ -1,0 +1,24 @@
+# Mirado Rakotoniaina
+
+> Étudiant en M1 Data & Intelligence Artificielle à l'EMIT Fianarantsoa (Madagascar), formé à l'économétrie et aux statistiques appliquées. Je conçois des modèles de machine learning et de deep learning, des pipelines ETL et des applications web full-stack. Ouvert aux stages et aux postes de data scientist.
+
+Nom complet : Mirado Rakotoniaina (écrit aussi RAKOTONIAINA Mirado). Pseudo GitHub : M1rad0-rkt.
+
+## Profil
+- Formation : Master en Informatique, parcours Data & IA (M1, depuis 2025), EMIT Fianarantsoa ; Licence en Informatique, Université FJKM Ravelojaona Ampandrana (2022-2025)
+- Expérience : stage projet à l'ARMP (Autorité de Régulation des Marchés Publics) sur un assistant de réglementation RAG/LLM et un chatbot ; Ideathon / Data Challenge Orange Digital Center & Ingedata (2026) ; formation DevOps Orange Digital Center (2026) ; stage de fin d'études chez PixelVault (2024-2025)
+- Compétences : Python, SQL, PyTorch, scikit-learn, Pandas, NumPy, NLP, RAG, LLM, TensorFlow, React, Django, FastAPI, PostgreSQL, MySQL, Power BI, Docker, Git
+- Langue du site : français
+
+## Projets
+- Clientelia : gestion des demandes clients et analyse de satisfaction (React, Django, MySQL, JWT) — https://github.com/M1rad0-rkt/CLIENTELIA
+- Assistant IA de réglementation ARMP : RAG + LLM + NLP sur les textes des marchés publics (en cours)
+- Chatbot IA ARMP : aide à l'utilisation des sites de l'ARMP (Python, TensorFlow, NLP) (en cours)
+- Tera-project : analyse de la qualité de l'air à Fianarantsoa (Python, Pandas, Streamlit) — https://github.com/M1rad0-rkt/Tera-project
+- Rice-disease-detection : détection de maladies du riz par vision par ordinateur (PyTorch, Gradio) — https://github.com/AndyFaneva/RNAProject
+- Site e-commerce : React, FastAPI, PostgreSQL — https://github.com/M1rad0-rkt/e-commerce
+- Rezerveo, GymGest, Aktifitifitra : projets web, desktop et jeu en Python/PHP
+
+## Liens
+- GitHub : https://github.com/M1rad0-rkt
+- LinkedIn : https://www.linkedin.com/in/mirado-rakotoniaina-978523346

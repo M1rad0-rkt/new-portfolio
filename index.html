@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="fr" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mirado Rakotoniaina — Étudiant Data & IA / Développeur</title>
+    <meta
+      name="description"
+      content="Portfolio de Mirado Rakotoniaina, étudiant en Master 1 Data & Intelligence Artificielle à l’EMIT Fianarantsoa (Madagascar). Machine learning, NLP, RAG et développement full-stack."
+    />
+    <meta name="author" content="Mirado Rakotoniaina" />
+    <meta name="theme-color" content="#f5eee0" />
+    <link rel="canonical" href="https://rakotoniaina-mirado.vercel.app/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mirado Rakotoniaina" />
+    <meta property="og:title" content="Mirado Rakotoniaina — Étudiant Data & IA / Développeur" />
+    <meta
+      property="og:description"
+      content="Portfolio de Mirado Rakotoniaina, étudiant en Master 1 Data & Intelligence Artificielle à l’EMIT Fianarantsoa (Madagascar). Machine learning, NLP, RAG et développement full-stack."
+    />
+    <meta property="og:url" content="https://rakotoniaina-mirado.vercel.app/" />
+    <meta property="og:image" content="https://rakotoniaina-mirado.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://rakotoniaina-mirado.vercel.app/og-image.png" />
+
+    <!-- Thème posé avant le premier rendu : choix mémorisé, sinon préférence système -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('mirado.theme');
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'dark')
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#141311');
+          var lang = localStorage.getItem('mirado.lang');
+          if (lang === 'en' || lang === 'fr') document.documentElement.lang = lang;
+        } catch (e) {}
+      })();
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mirado Rakotoniaina",
+        "url": "https://rakotoniaina-mirado.vercel.app/",
+        "email": "mailto:miradorakoto111@gmail.com",
+        "jobTitle": "Data & AI Student / Developer",
+        "address": { "@type": "PostalAddress", "addressLocality": "Fianarantsoa", "addressCountry": "MG" },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "EMIT Fianarantsoa" },
+          { "@type": "CollegeOrUniversity", "name": "Université FJKM Ravelojaona Ampandrana" }
+        ],
+        "knowsAbout": ["Data Science", "Machine Learning", "Deep Learning", "NLP", "RAG", "Full-Stack Development"],
+        "sameAs": [
+          "https://github.com/M1rad0-rkt",
+          "https://www.linkedin.com/in/mirado-rakotoniaina-978523346"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>Mirado Rakotoniaina — Data &amp; AI student / developer. Please enable JavaScript to view this portfolio.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
