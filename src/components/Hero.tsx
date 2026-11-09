@@ -4,13 +4,19 @@ import { IconDown, IconDownload, IconPin, IconArrowRight } from '../lib/icons';
 import { GithubMark, LinkedinMark } from '../lib/BrandIcons';
 import { Txt } from '../admin/Tools';
 
-function Sun({ badge }: { badge: string }) {
+function Sun({ badge, label }: { badge: string; label: string }) {
   const ring = badge.repeat(4);
   return (
-    <svg className="sun" viewBox="0 0 440 440" role="presentation" aria-hidden="true" focusable="false">
+    <svg className="sun" viewBox="0 0 440 440" role="img" aria-label={label} focusable="false">
       <defs>
-        <clipPath id="sunClip">
-          <circle cx="220" cy="220" r="150" />
+        <linearGradient id="sunGrad" x1="0.15" y1="0" x2="0.85" y2="1">
+          <stop offset="0" style={{ stopColor: 'var(--amber)' }} />
+          <stop offset="0.38" style={{ stopColor: 'var(--g1)' }} />
+          <stop offset="0.72" style={{ stopColor: 'var(--g2)' }} />
+          <stop offset="1" style={{ stopColor: 'var(--g3)' }} />
+        </linearGradient>
+        <clipPath id="portraitClip">
+          <circle cx="220" cy="220" r="142" />
         </clipPath>
         <path id="ringPath" d="M220,220 m-196,0 a196,196 0 1,1 392,0 a196,196 0 1,1 -392,0" />
       </defs>
@@ -23,15 +29,15 @@ function Sun({ badge }: { badge: string }) {
           </textPath>
         </text>
       </g>
-      {/* Photo portrait clipped to the central circle */}
+      <circle cx="220" cy="220" r="150" fill="url(#sunGrad)" />
       <image
         href="/projects/mirado.jpg"
-        x="70"
-        y="70"
-        width="300"
-        height="300"
+        x="30"
+        y="40"
+        width="380"
+        height="385"
         preserveAspectRatio="xMidYMid slice"
-        clipPath="url(#sunClip)"
+        clipPath="url(#portraitClip)"
       />
       <circle cx="220" cy="220" r="150" fill="none" stroke="var(--ink)" strokeWidth="1" />
       <g stroke="var(--ink)" strokeWidth="1" opacity="0.7">
@@ -69,10 +75,6 @@ export function Hero() {
           </span>
         </h1>
 
-        <div className="hero__art">
-          <Sun badge={t.hero.badge} />
-        </div>
-
         <div className="hero__copy">
           <p className="hero__role mono">{t.hero.role}</p>
           <p className="hero__tag">
@@ -103,6 +105,10 @@ export function Hero() {
               </a>
             </span>
           </div>
+        </div>
+
+        <div className="hero__art">
+          <Sun badge={t.hero.badge} label={`Portrait — ${profile.name}`} />
         </div>
 
         <a className="hero__scroll mono" href="#about">
