@@ -11,9 +11,6 @@ export const EDITABLE_TEXTS = [
   'about.p3',
   'about.quote',
   'contact.subtitle',
-  'contact.title',
-  'contact.locationValue',
-  'contact.whatsappPrefill',
 ] as const;
 export type TextKey = (typeof EDITABLE_TEXTS)[number];
 
@@ -24,10 +21,7 @@ export const TEXT_LABELS: Record<TextKey, string> = {
   'about.p2': 'À propos — paragraphe 2',
   'about.p3': 'À propos — paragraphe 3',
   'about.quote': 'À propos — citation',
-  'contact.subtitle': 'Contact — sous-titre',
-  'contact.title': 'Contact — titre',
-  'contact.locationValue': 'Contact — localisation',
-  'contact.whatsappPrefill': 'Contact — message WhatsApp prérempli',
+  'contact.subtitle': 'Pied de page (contact) — sous-titre',
 };
 
 function lookup(dict: unknown, path: string): string {

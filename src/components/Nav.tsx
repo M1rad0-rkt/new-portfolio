@@ -7,36 +7,8 @@ import { useAdmin } from '../admin/AdminProvider';
 import { IconClose, IconEdit, IconLock, IconMenu, IconMoon, IconSun } from '../lib/icons';
 import type { Lang } from '../i18n/types';
 
-const SECTIONS = ['home', 'about', 'journey', 'skills', 'projects', 'contact'] as const;
-const TRACKED = [...SECTIONS.slice(0, 5), 'services', 'contact'];
-
-/** Drapeaux SVG simples (fiables sur tous les OS / navigateurs). */
-function FlagFr({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size * 0.75} viewBox="0 0 16 12" className="lang-switch__flag-svg" aria-hidden="true">
-      <rect width="5.33" height="12" fill="#002395" />
-      <rect x="5.33" width="5.34" height="12" fill="#fff" />
-      <rect x="10.67" width="5.33" height="12" fill="#ed2939" />
-    </svg>
-  );
-}
-
-function FlagGb({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size * 0.75} viewBox="0 0 16 12" className="lang-switch__flag-svg" aria-hidden="true">
-      <rect width="16" height="12" fill="#012169" />
-      <path d="M0 0 L16 12 M16 0 L0 12" stroke="#fff" strokeWidth="2" />
-      <path d="M0 0 L16 12 M16 0 L0 12" stroke="#C8102E" strokeWidth="1" />
-      <path d="M8 0 V12 M0 6 H16" stroke="#fff" strokeWidth="3.2" />
-      <path d="M8 0 V12 M0 6 H16" stroke="#C8102E" strokeWidth="1.6" />
-    </svg>
-  );
-}
-
-const LANG_META: Record<Lang, { Flag: typeof FlagFr; label: string }> = {
-  fr: { Flag: FlagFr, label: 'FR' },
-  en: { Flag: FlagGb, label: 'EN' },
-};
+const SECTIONS = ['home', 'about', 'journey', 'skills', 'projects', 'reviews', 'contact'] as const;
+const TRACKED = [...SECTIONS.slice(0, 5), 'services', 'reviews', 'contact'];
 
 export function Nav() {
   const { t, lang, setLang } = useI18n();
@@ -44,6 +16,8 @@ export function Nav() {
   const admin = useAdmin();
   const scrolled = useScrolled();
   const active = useActiveSection(TRACKED);
+  // La section Avis n'existe que si Supabase est configuré.
+  const links = SECTIONS.filter((id) => id !== 'reviews' || admin.configured);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -61,23 +35,18 @@ export function Nav() {
   const themeLabel = theme === 'dark' ? t.a11y.switchToLight : t.a11y.switchToDark;
 
   const langSwitch = (
-    <div className="seg lang-switch" role="group" aria-label={t.a11y.language}>
-      {(['fr', 'en'] as Lang[]).map((l) => {
-        const { Flag, label } = LANG_META[l];
-        return (
-          <button
-            key={l}
-            type="button"
-            className="seg__btn mono lang-switch__btn"
-            aria-pressed={lang === l}
-            onClick={() => setLang(l)}
-            title={label}
-          >
-            <Flag size={16} />
-            <span className="lang-switch__code">{label}</span>
-          </button>
-        );
-      })}
+    <div className="seg" role="group" aria-label={t.a11y.language}>
+      {(['fr', 'en'] as Lang[]).map((l) => (
+        <button
+          key={l}
+          type="button"
+          className="seg__btn mono"
+          aria-pressed={lang === l}
+          onClick={() => setLang(l)}
+        >
+          {l.toUpperCase()}
+        </button>
+      ))}
     </div>
   );
 
@@ -109,7 +78,7 @@ export function Nav() {
         </a>
 
         <nav className="nav__links" aria-label={t.a11y.mainNav}>
-          {SECTIONS.map((id) => (
+          {links.map((id) => (
             <a
               key={id}
               href={`#${id}`}
@@ -140,7 +109,7 @@ export function Nav() {
 
       <div id="mobile-menu" className={`sheet ${open ? 'is-open' : ''}`} hidden={!open}>
         <nav className="sheet__nav wrap" aria-label={t.a11y.mainNav}>
-          {SECTIONS.map((id, i) => (
+          {links.map((id, i) => (
             <a
               key={id}
               href={`#${id}`}

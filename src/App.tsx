@@ -7,11 +7,11 @@ import { Journey } from './components/Journey';
 import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
 import { Services } from './components/Services';
-import { Contact } from './components/Contact';
+import { Reviews } from './components/Reviews';
 import { Footer } from './components/Footer';
 import { Gate, shouldShowGate } from './components/Gate';
 import { AdminUI } from './admin/AdminUI';
-import { Chatbot } from './components/Chatbot';
+import './styles/reviews-footer.css';
 
 export default function App() {
   const { t } = useI18n();
@@ -30,10 +30,9 @@ export default function App() {
         <Skills />
         <Projects />
         <Services />
-        <Contact />
+        <Reviews />
       </main>
       <Footer />
-      <Chatbot />
       <AdminUI />
     </>
   );

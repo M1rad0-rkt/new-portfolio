@@ -92,6 +92,57 @@ drop policy if exists "admin can delete portfolio files" on storage.objects;
 create policy "admin can delete portfolio files" on storage.objects
   for delete to authenticated using (bucket_id = 'portfolio' and public.is_admin());
 
+-- 3 bis) Avis des visiteurs -----------------------------------------
+--  • n'importe qui peut DÉPOSER un avis, mais il est créé « non validé » ;
+--  • le public ne voit QUE les avis validés (approved = true) ;
+--  • l'admin voit tout, valide (approved = true), masque ou supprime.
+--  Validation possible depuis le site (mode édition) ou depuis
+--  Supabase → Table Editor → reviews (cocher / décocher « approved »).
+create table if not exists public.reviews (
+  id          uuid primary key default gen_random_uuid(),
+  name        text not null check (char_length(btrim(name)) between 1 and 80),
+  role        text check (role is null or char_length(role) <= 80),
+  rating      smallint not null check (rating between 1 and 5),
+  message     text not null check (char_length(btrim(message)) between 10 and 600),
+  approved    boolean not null default false,
+  created_at  timestamptz not null default now()
+);
+create index if not exists reviews_approved_created_idx
+  on public.reviews (approved, created_at desc);
+
+-- Garde-fou anti-flood : au plus 100 avis en attente à la fois (hors admin).
+create or replace function public.reviews_guard()
+returns trigger language plpgsql security definer set search_path = public as $$
+begin
+  if not public.is_admin()
+     and (select count(*) from public.reviews where approved = false) >= 100 then
+    raise exception 'Trop d''avis en attente, réessayez plus tard.';
+  end if;
+  return new;
+end;
+$$;
+drop trigger if exists reviews_guard_trg on public.reviews;
+create trigger reviews_guard_trg before insert on public.reviews
+  for each row execute function public.reviews_guard();
+
+alter table public.reviews enable row level security;
+
+drop policy if exists "public reads approved reviews" on public.reviews;
+create policy "public reads approved reviews" on public.reviews
+  for select to anon, authenticated using (approved = true or public.is_admin());
+
+drop policy if exists "anyone can submit a review" on public.reviews;
+create policy "anyone can submit a review" on public.reviews
+  for insert to anon, authenticated with check (approved = false or public.is_admin());
+
+drop policy if exists "admin can update reviews" on public.reviews;
+create policy "admin can update reviews" on public.reviews
+  for update to authenticated using (public.is_admin()) with check (public.is_admin());
+
+drop policy if exists "admin can delete reviews" on public.reviews;
+create policy "admin can delete reviews" on public.reviews
+  for delete to authenticated using (public.is_admin());
+
 -- 4) Déclarer le compte administrateur ------------------------------
 -- À rejouer APRÈS avoir créé l'utilisateur (Authentication → Users → Add user,
 -- ou `node scripts/create-admin.mjs`). Sans effet tant que l'utilisateur n'existe pas.

@@ -97,3 +97,45 @@ export const IconLockOpen = icon(LockOpen);
 export const IconUp = icon(ArrowUpward);
 export const IconDownArrow = icon(ArrowDownward);
 export const IconUpload = icon(CloudUpload);
+
+/** Icônes dessinées à la main (absentes de la bibliothèque). */
+export function IconStar({ size = 20, filled = true, className }: { size?: number; filled?: boolean; className?: string }) {
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+      fill={filled ? 'currentColor' : 'none'}
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinejoin="round"
+    >
+      <path d="M12 3.2l2.65 5.57 6.1.78-4.47 4.2 1.14 6.05L12 16.86 6.58 19.8l1.14-6.05-4.47-4.2 6.1-.78L12 3.2z" />
+    </svg>
+  );
+}
+
+export function IconCoffee({ size = 18, className }: { size?: number; className?: string }) {
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      focusable="false"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z" />
+      <path d="M16 10.5h1.5a2.5 2.5 0 0 1 0 5H15.6" />
+      <path d="M8 3.5c-.8 1 .8 1.6 0 2.8M12 3.5c-.8 1 .8 1.6 0 2.8" />
+    </svg>
+  );
+}
