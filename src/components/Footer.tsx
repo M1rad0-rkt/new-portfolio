@@ -73,10 +73,6 @@ export function Footer() {
           </ul>
         </div>
 
-        <p className="footer__mark" aria-hidden="true">
-          MIRADO
-        </p>
-
         <div className="footer__bar mono">
           <p className="footer__made">
             <IconCoffee size={16} />

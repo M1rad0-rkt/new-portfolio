@@ -3,7 +3,7 @@ import { useI18n } from '../i18n/I18nProvider';
 import { useAdmin } from '../admin/AdminProvider';
 import { supabase } from '../lib/supabase';
 import { useReviews, type Review } from '../content/reviews';
-import { IconCheck, IconDelete, IconSend, IconStar } from '../lib/icons';
+import { IconCheck, IconChat, IconDelete, IconSend, IconStar } from '../lib/icons';
 import { Reveal } from './Reveal';
 import { SectionHead } from './SectionHead';
 
@@ -182,10 +182,17 @@ export function Reviews() {
 
           <Reveal className="reviews__form" delay={100}>
             <form ref={formRef} onSubmit={onSubmit} noValidate aria-labelledby="review-form-title">
-              <h3 id="review-form-title" className="form__title">
-                {r.formTitle}
-              </h3>
-              <p className="form__note mono">{r.formNote}</p>
+              <div className="rform__head">
+                <span className="rform__badge" aria-hidden="true">
+                  <IconChat size={22} />
+                </span>
+                <div>
+                  <h3 id="review-form-title" className="form__title">
+                    {r.formTitle}
+                  </h3>
+                  <p className="form__note">{r.formNote}</p>
+                </div>
+              </div>
 
               <div className="form__grid">
                 <div className="field">
@@ -213,6 +220,7 @@ export function Reviews() {
 
               <fieldset className="field stars-fieldset">
                 <legend>{r.rating}</legend>
+                <div className="stars-row">
                 <div className="stars-input" aria-invalid={errors.rating ? true : undefined}>
                   {[1, 2, 3, 4, 5].map((n) => (
                     <label key={n} className={n <= rating ? 'is-on' : ''}>
@@ -227,6 +235,10 @@ export function Reviews() {
                       <IconStar size={30} filled={n <= rating} />
                     </label>
                   ))}
+                </div>
+                <span className="stars-caption" aria-hidden="true">
+                  {rating ? ratingLabel(rating) : ''}
+                </span>
                 </div>
                 {errors.rating ? <p className="field__err">{errors.rating}</p> : null}
               </fieldset>

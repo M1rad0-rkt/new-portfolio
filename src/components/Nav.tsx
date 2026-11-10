@@ -6,6 +6,13 @@ import { useScrolled } from '../hooks/useScrolled';
 import { useAdmin } from '../admin/AdminProvider';
 import { IconClose, IconEdit, IconLock, IconMenu, IconMoon, IconSun } from '../lib/icons';
 import type { Lang } from '../i18n/types';
+import { FlagFR, FlagGB } from '../lib/Flags';
+import '../styles/lang-flags.css';
+
+const LANGS: Record<Lang, { name: string; Flag: typeof FlagFR }> = {
+  fr: { name: 'Français', Flag: FlagFR },
+  en: { name: 'English', Flag: FlagGB },
+};
 
 const SECTIONS = ['home', 'about', 'journey', 'skills', 'projects', 'reviews', 'contact'] as const;
 const TRACKED = [...SECTIONS.slice(0, 5), 'services', 'reviews', 'contact'];
@@ -36,17 +43,24 @@ export function Nav() {
 
   const langSwitch = (
     <div className="seg" role="group" aria-label={t.a11y.language}>
-      {(['fr', 'en'] as Lang[]).map((l) => (
-        <button
-          key={l}
-          type="button"
-          className="seg__btn mono"
-          aria-pressed={lang === l}
-          onClick={() => setLang(l)}
-        >
-          {l.toUpperCase()}
-        </button>
-      ))}
+      {(Object.keys(LANGS) as Lang[]).map((l) => {
+        const { name, Flag } = LANGS[l];
+        return (
+          <button
+            key={l}
+            type="button"
+            className="seg__btn seg__btn--flag mono"
+            aria-pressed={lang === l}
+            aria-label={name}
+            title={name}
+            lang={l}
+            onClick={() => setLang(l)}
+          >
+            <Flag size={22} className="flag" />
+            <span className="seg__code">{l.toUpperCase()}</span>
+          </button>
+        );
+      })}
     </div>
   );
 
