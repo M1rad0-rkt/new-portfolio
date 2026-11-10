@@ -9,6 +9,7 @@ import { Projects } from './components/Projects';
 import { Services } from './components/Services';
 import { Reviews } from './components/Reviews';
 import { Footer } from './components/Footer';
+import { Chatbot } from './components/Chatbot';
 import { Gate, shouldShowGate } from './components/Gate';
 import { AdminUI } from './admin/AdminUI';
 import './styles/reviews-footer.css';
@@ -33,6 +34,7 @@ export default function App() {
         <Reviews />
       </main>
       <Footer />
+      <Chatbot/>
       <AdminUI />
     </>
   );
